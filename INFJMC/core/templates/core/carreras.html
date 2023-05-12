@@ -7,6 +7,11 @@
     <title>Carreras</title>
 </head>
 <body>
-    <h1>Carreras</h1>
+    #{{carreras}}
+    <ul>
+    {% for c in carreras%}
+        <li>{{c.nombre}}</li>
+    {%endfor%}
+    </ul>
 </body>
 </html>

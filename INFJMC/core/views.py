@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Carrera
 
 # Create your views here.
 def index(request):
@@ -8,7 +9,8 @@ def index(request):
 
 
 def carreras(request):
-    return render(request, 'core/carreras.html')
+    carreras = Carrera.objects.all
+    return render(request, 'core/carreras.html', {'carreras':carreras})
 
     #return HttpResponse("<h1>Carreras</h1>" + "<p>INGENIERIA DE EJECUCION EN MECANICA DE PROCESOS Y MANTENIMIENTO INDUSTRIAL<br> INGENIERIA EN FABRICACION Y DISEÑO INDUSTRIAL</p>")
 
