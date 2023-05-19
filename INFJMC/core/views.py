@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Carrera
+from .models import Docente
 
 # Create your views here.
 def index(request):
@@ -19,3 +20,21 @@ def docentes(request):
 
     #return HttpResponse("<h1>Docentes</h1>")
 
+def nueva_carrera(request):
+    if request.POST:
+        nombre= request.POST['nombre']
+        c = Carrera(codigo=111,nombre=nombre,duracion=1)
+        print("funciona")
+        c.save()
+        return redirect(carreras)
+    return render(request, 'core/nueva_carrera.html')
+
+def nuevo_docente(request):
+    if request.POST:
+        nombre= request.POST['nombre']
+        apellido= request.POST['apellido']
+        email= request.POST['email']
+        d = Docente(nombre=nombre,apellido=apellido,email=email)
+        d.save()
+        return redirect(docentes)
+    return render(request, 'core/nuevo_docente.html')
